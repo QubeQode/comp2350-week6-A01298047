@@ -45,5 +45,19 @@ async function addUser(postData) {
 	} 
 };
 
+async function deleteUser(webUserId) {     
+	let sqlDeleteUser = `   DELETE FROM web_user  WHERE web_user_id = :userID  `;       
+	let params = {         
+		userID: webUserId     
+	};     
+	console.log(sqlDeleteUser);  
+	try {   
+		await database.query(sqlDeleteUser, params);   
+		return true;  
+	}  catch (err) {   
+		console.log(err);   
+		return false;  
+	}         
+};
 
-module.exports = { getAllUsers, addUser }
+module.exports = { getAllUsers, addUser, deleteUser };
